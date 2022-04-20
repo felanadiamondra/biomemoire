@@ -5,6 +5,8 @@
  */
 package bioedjir;
 import bio.views.Login;
+import javax.swing.JOptionPane;
+import zkfinger.ZKScanner;
 /**
  *
  * @author HP
@@ -16,6 +18,7 @@ public class BIOEDJIR {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        JOptionPane.showMessageDialog(null, ZKScanner.getInstance().open());
         new Login().setVisible(true);
     }
     

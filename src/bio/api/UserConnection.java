@@ -36,7 +36,6 @@ public class UserConnection {
             HttpURLConnection conn = (HttpURLConnection)url.openConnection();
             conn.setRequestMethod("POST");
             conn.setDoOutput(true);
-           // conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded"); 
             conn.connect();
             int responsecode = conn.getResponseCode();
             String  inline ="";
@@ -47,14 +46,8 @@ public class UserConnection {
             BufferedReader br= new BufferedReader(new InputStreamReader(conn.getInputStream()));
             while((inline = br.readLine()) != null){
                 res= res + inline;
-                System.out.println(res);
             }
-            System.out.println("Hello");
             br.close();
-            //Scanner scanner;
-                //for(scanner = new Scanner(url.openStream()); scanner.hasNext(); inline = inline + scanner.nextLine()) {
-            //}
-           // scanner.close();
            JSONParser parse = new JSONParser();
            JSONObject user_obj = (JSONObject)parse.parse(res);
            
@@ -65,8 +58,7 @@ public class UserConnection {
                String userid = all_user_info.get("username").toString().trim();
                String codeCms = all_user_info.get("codeCms").toString().trim();
                String role = all_user_info.get("role").toString().trim();
-               User newuser= new User(userid, codeCms, role);
-               
+               User newuser= new User(userid, codeCms, role);  
                authresponse= new Authservice(auth_response,newuser );
            }
            else{
