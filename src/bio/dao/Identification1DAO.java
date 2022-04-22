@@ -10,6 +10,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import bio.models.Empreinte;
+import bio.models.Collaborateur;
+import bio.models.Authentification;
 /**
  *
  * @author HP
@@ -42,7 +45,7 @@ public class Identification1DAO extends IDAO<Identification>{
        throw new UnsupportedOperationException("Not supported yet.");
    }
    
-  public void create_identification(Identification obj, String poucentage) {
+  /* public void create_identification(Identification obj, String poucentage) {
     try {
       PreparedStatement statement = this.connect.prepareStatement("INSERT INTO identifications(adresse_mac,empreinte_id,score,doigt,collaborateur_id,auth_id,user,code_cms,matricule,pourcentage)VALUES(?,?,?,?,?,?,?,?,?,?)");
       statement.setString(1, obj.getAdresse_mac());
@@ -58,7 +61,27 @@ public class Identification1DAO extends IDAO<Identification>{
       statement.executeUpdate();
     } catch (SQLException e) {
       System.out.println(e.getMessage());
-      System.out.println("erreur ato e indray zalaha a!!!!!!!!!!!!!!!!");
+      
+    } 
+  } */
+  
+  public void create_identification(Empreinte objE, Authentification objA, Collaborateur objC,int matricule, String adrmac) {
+    
+    try {
+      PreparedStatement statement = this.connect.prepareStatement("INSERT INTO identifications(adresse_mac,empreinte_id,score,doigt,collaborateur_id,auth_id,user,code_cms,matricule,pourcentage)VALUES(?,?,?,?,?,?,?,?,?,?)");
+      statement.setString(1, adrmac);
+      statement.setInt(2, objE.getId());
+      statement.setInt(3, 100);
+      statement.setString(4, objE.getFinger());
+      statement.setInt(5, objE.getCollaborateur_id());
+      statement.setInt(6, objA.getId());
+      statement.setString(7, "R03");
+      statement.setString(8, "CMSTANA");
+      statement.setInt(9, matricule);
+      statement.setString(10, "88");
+      statement.executeUpdate();
+    } catch (SQLException e) {
+      System.out.println(e.getMessage());
     } 
   }
   

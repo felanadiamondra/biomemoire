@@ -61,6 +61,14 @@ public class User {
     public void setPassword(String pass){
         this.password = pass;
     }
+    
+    public String getCodeCms(){
+        return this.codecms;
+    }
+    
+    public void setCodeCms(String code){
+        this.codecms = code;
+    }
  
     public String getRole(){
         return this.role;

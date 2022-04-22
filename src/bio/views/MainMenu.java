@@ -5,7 +5,12 @@
  */
 package bio.views;
 import bio.api.GetEmployee;
+import bio.models.Authentification;
 import bio.models.Collaborateur;
+import bio.models.Empreinte;
+import bio.models.Rajout;
+import bio.models.Adresse;
+import bio.models.Identification;
 import dao.factory.DAOFactory;
 import eu.hansolo.steelseries.gauges.Linear;
 import eu.hansolo.steelseries.tools.ColorDef;
@@ -97,7 +102,6 @@ public class MainMenu extends javax.swing.JFrame {
         stop = false;
         TrackThread tThread = new TrackThread();
         tThread.setMatr("101703");
-        System.out.println("Eoo e");
         tThread.setLibContent(this.labmatchfp);
         tThread.start();
     }
@@ -113,6 +117,7 @@ public class MainMenu extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         nav = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         menubar = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -128,6 +133,12 @@ public class MainMenu extends javax.swing.JFrame {
         panIdentInfo = new javax.swing.JPanel();
         gaugePanel = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        labmatchtypat = new javax.swing.JLabel();
+        labmatchdatenaiss = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        labmatchname = new javax.swing.JLabel();
         panEnregistrement = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         panCollabs = new javax.swing.JPanel();
@@ -151,12 +162,10 @@ public class MainMenu extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         libanotherfinger = new javax.swing.JLabel();
+        labanotherfinger = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         libfingerone = new javax.swing.JLabel();
-        jPanel9 = new javax.swing.JPanel();
         labfingerone = new javax.swing.JLabel();
-        jPanel10 = new javax.swing.JPanel();
-        labanotherfinger = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -171,18 +180,27 @@ public class MainMenu extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("CMS BIOMETRIC");
 
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel6.setMaximumSize(new java.awt.Dimension(34, 34));
+        jLabel6.setMinimumSize(new java.awt.Dimension(34, 34));
+        jLabel6.setPreferredSize(new java.awt.Dimension(34, 34));
+        jLabel6.setRequestFocusEnabled(false);
+
         javax.swing.GroupLayout navLayout = new javax.swing.GroupLayout(nav);
         nav.setLayout(navLayout);
         navLayout.setHorizontalGroup(
             navLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(navLayout.createSequentialGroup()
-                .addGap(78, 78, 78)
+                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1147, Short.MAX_VALUE))
+                .addContainerGap(1181, Short.MAX_VALUE))
         );
         navLayout.setVerticalGroup(
             navLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         jPanel1.add(nav, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -310,24 +328,64 @@ public class MainMenu extends javax.swing.JFrame {
         gaugePanel.setLayout(gaugePanelLayout);
         gaugePanelLayout.setHorizontalGroup(
             gaugePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 491, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         gaugePanelLayout.setVerticalGroup(
             gaugePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 322, Short.MAX_VALUE)
+            .addGap(0, 202, Short.MAX_VALUE)
         );
 
         jPanel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+
+        jLabel8.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        jLabel8.setText("Correspondance");
+
+        jLabel9.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        jLabel9.setText("Date de naissance:");
+
+        jLabel10.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        jLabel10.setText("Type patient:");
+
+        labmatchname.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labmatchdatenaiss, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labmatchtypat, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(110, 110, 110))
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(175, 175, 175)
+                .addComponent(jLabel8)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labmatchname, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(67, 67, 67))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labmatchname, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(labmatchdatenaiss, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labmatchtypat, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout panIdentInfoLayout = new javax.swing.GroupLayout(panIdentInfo);
@@ -346,7 +404,7 @@ public class MainMenu extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panIdentInfoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(gaugePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -369,7 +427,7 @@ public class MainMenu extends javax.swing.JFrame {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(panEmpreintedigit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panIdentInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(212, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panIdentificationLayout = new javax.swing.GroupLayout(panIdentification);
@@ -379,7 +437,7 @@ public class MainMenu extends javax.swing.JFrame {
             .addGroup(panIdentificationLayout.createSequentialGroup()
                 .addGap(222, 222, 222)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(216, Short.MAX_VALUE))
+                .addContainerGap(130, Short.MAX_VALUE))
         );
         panIdentificationLayout.setVerticalGroup(
             panIdentificationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -583,7 +641,7 @@ public class MainMenu extends javax.swing.JFrame {
                 .addGroup(choixEmpreinteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(selectFinger, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
         choixEmpreinteLayout.setVerticalGroup(
             choixEmpreinteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -604,10 +662,18 @@ public class MainMenu extends javax.swing.JFrame {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(libanotherfinger, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labanotherfinger, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(libanotherfinger, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(labanotherfinger, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(libanotherfinger, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -619,54 +685,18 @@ public class MainMenu extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(libfingerone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(75, 75, 75)
+                .addComponent(labfingerone, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(libfingerone, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        jPanel9.setBackground(new java.awt.Color(204, 204, 255));
-        jPanel9.setMaximumSize(new java.awt.Dimension(345, 28));
-        jPanel9.setMinimumSize(new java.awt.Dimension(345, 28));
-
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGap(159, 159, 159)
-                .addComponent(labfingerone)
-                .addContainerGap(186, Short.MAX_VALUE))
-        );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labfingerone)
-                .addContainerGap(17, Short.MAX_VALUE))
-        );
-
-        jPanel10.setBackground(new java.awt.Color(204, 204, 255));
-        jPanel10.setMaximumSize(new java.awt.Dimension(323, 28));
-        jPanel10.setMinimumSize(new java.awt.Dimension(323, 28));
-
-        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                .addContainerGap(180, Short.MAX_VALUE)
-                .addComponent(labanotherfinger)
-                .addGap(143, 143, 143))
-        );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
-                .addComponent(labanotherfinger)
-                .addContainerGap())
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(labfingerone, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(libfingerone, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panEmpreinteLayout = new javax.swing.GroupLayout(panEmpreinte);
@@ -674,60 +704,51 @@ public class MainMenu extends javax.swing.JFrame {
         panEmpreinteLayout.setHorizontalGroup(
             panEmpreinteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panEmpreinteLayout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addContainerGap()
                 .addComponent(choixEmpreinte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panEmpreinteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(panEmpreinteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panEmpreinteLayout.setVerticalGroup(
             panEmpreinteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panEmpreinteLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panEmpreinteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panEmpreinteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(22, 22, 22))
             .addGroup(panEmpreinteLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(choixEmpreinte, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panEmpreinteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(panEmpreinteLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(choixEmpreinte, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(panCollabs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(panInfoCollabs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(panEmpreinte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(panCollabs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(panInfoCollabs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(53, 53, 53))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(71, 71, 71)
-                .addComponent(panEmpreinte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(panInfoCollabs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panCollabs, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(panCollabs, javax.swing.GroupLayout.PREFERRED_SIZE, 227, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panEmpreinte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(170, Short.MAX_VALUE))
+                .addContainerGap(202, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panEnregistrementLayout = new javax.swing.GroupLayout(panEnregistrement);
@@ -798,6 +819,58 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void enregButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enregButtonActionPerformed
         // TODO add your handling code here:
+        if(this.libfingerone.getIcon()==null){
+            JOptionPane.showMessageDialog(this, "Veuillez scanner votre empreinte avant d'enregistrer! ", "Message", 2);
+        } else if( this.libanotherfinger.getIcon() == null){
+            JOptionPane.showMessageDialog(this, "Vauillez scanner votre empreinte avant d'enregistrer! ", "Message", 2);
+        } else{
+            /*collab =*/ 
+          
+            Collaborateur newCollaborateur = new Collaborateur(this.cmatr, this.cname, this.cdate, this.ctype);
+            Collaborateur use = DAOFactory.getCollaborateurDAO().isthere(newCollaborateur);
+            if (use == null) {
+                DAOFactory.getCollaborateurDAO().create(newCollaborateur);
+            } else {
+                newCollaborateur = use;
+                System.out.println(newCollaborateur.getId());
+            } 
+            collab = DAOFactory.getCollaborateurDAO().get(newCollaborateur.getId());
+            if ( collab != null){
+               List<Empreinte> checkEmp = DAOFactory.getEmpreinteDAO().getAllById(collab.getId());
+               if(checkEmp.isEmpty()){
+                   Empreinte empreinte1 = DAOFactory.getEmpreinteDAO().create(new Empreinte(this.labfingerone.getText(), collab.getId()));
+                   Empreinte empreinte2 = DAOFactory.getEmpreinteDAO().create(new Empreinte(this.labanotherfinger.getText(), collab.getId()));
+                   Rajout objR = new Rajout(empreinte1.getId(),Authentification.getSession().getId(),0, "inscription");
+                   Rajout objR2 = new Rajout(empreinte2.getId(), Authentification.getSession().getId(), 0, "inscription");
+                   // (new RajoutDAO()).create(objR);
+                   DAOFactory.getRajoutDAO().create(objR);
+                   DAOFactory.getRajoutDAO().create(objR2);
+                   JOptionPane.showMessageDialog(this,"Empreintes ajoutés avec succès");
+               } else{
+                   
+                   DAOFactory.getEmpreinteDAO().deleteById(collab.getId());
+                   Empreinte empreinte1 = DAOFactory.getEmpreinteDAO().create(new Empreinte(this.labfingerone.getText(), collab.getId()));
+                   Empreinte empreinte2 = DAOFactory.getEmpreinteDAO().create(new Empreinte(this.labanotherfinger.getText(), collab.getId()));
+                  // Rajout objR = new Rajout(empreinte1.getId(),Authentification.getSession().getId(),0, "inscription");
+                   // Rajout objR2 = new Rajout(empreinte2.getId(), Authentification.getSession().getId(), 0, "inscription");
+                   //DAOFactory.getRajoutDAO().create(objR);
+                   //DAOFactory.getRajoutDAO().create(objR2);
+                   for(Empreinte emp : checkEmp){
+                       Rajout objR = DAOFactory.getRajoutDAO().get(emp.getId());
+                       boolean del = DAOFactory.getRajoutDAO().delete(objR);
+                   }
+                   Rajout objR = new Rajout(empreinte1.getId(),Authentification.getSession().getId(),0, "inscription");
+                   Rajout objR2 = new Rajout(empreinte2.getId(), Authentification.getSession().getId(), 0, "inscription");
+                   DAOFactory.getRajoutDAO().create(objR);
+                   DAOFactory.getRajoutDAO().create(objR2);
+                   JOptionPane.showMessageDialog(this,"Empreintes modifiés avec succès");
+               }
+               
+               //System.out.prinn(Authentification.getSession().getId());
+            } else{
+                JOptionPane.showMessageDialog(this, "Veuillez selectionner une personne");
+            }
+        }
     }//GEN-LAST:event_enregButtonActionPerformed
 
     private void selectFingerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectFingerActionPerformed
@@ -845,7 +918,6 @@ public class MainMenu extends javax.swing.JFrame {
             this.labanotherfinger.setText(this.selectFinger.getSelectedItem().toString());
         }
         mThread.start();
-        System.out.println("Ca ca!");
     }
     
     private void setValueSelectedRows(int val){
@@ -888,7 +960,7 @@ public class MainMenu extends javax.swing.JFrame {
             if(this.isCapture){
                this.setImageIcon();
                ZKScannerMatch match= ZKScanner.getInstance().match();
-               System.out.println(match.score);
+                
               /* try {
                    BufferedImage image = ImageIO.read(new File("fingerprint.bmp"));
                    ByteArrayOutputStream fingerByte = new ByteArrayOutputStream();
@@ -905,20 +977,62 @@ public class MainMenu extends javax.swing.JFrame {
                    System.out.println("Error");
                }*/
                if(match.score < 50){
+                   System.out.println("Ligne 980: Tonga eto");
                     MainMenu.this.gauge.setValueColor(ColorDef.RED);
                     MainMenu.this.gauge.setValueAnimated(match.score);
+                    
                } else if(match.score < 80){
+                   System.out.println("Ligne 985: Tonga eto");
                    MainMenu.this.gauge.setValueColor(ColorDef.YELLOW);
                    MainMenu.this.gauge.setValueAnimated(match.score);
                    System.out.println(match.score);
                    MainMenu.this.collab= DAOFactory.getCollaborateurDAO().get(match.empreinte.getCollaborateur_id());
                    MainMenu.this.gauge.setTitle(MainMenu.this.collab.getName());
+                   MainMenu.this.labmatchname.setText(MainMenu.this.collab.getName());
+                   MainMenu.this.labmatchdatenaiss.setText(MainMenu.this.collab.getDateNaiss());
+                   MainMenu.this.labmatchtypat.setText(MainMenu.this.collab.getType());
+                   Rajout objR = new Rajout(match.empreinte.getId(), Authentification.getSession().getId(), match.score, "identification");
+                   DAOFactory.getRajoutDAO().create(objR);
+                   /*int indexmax =  DAOFactory.getIdentificationDAO().getMAxTableIdentification();
+                   if(indexmax == 0){
+                       DAOFactory.getIdentificationDAO().create_identification(, String.valueOf(match.score));
+                   }
+                   List<Identification> farany = DAOFactory.getIdentificationDAO().getAllTableIdentification(indexmax);
+   
+                   DAOFactory.getIdentificationDAO().create_identification(farany.get(0), String.valueOf(match.score));*/
+                   Collaborateur col = MainMenu.this.collab;
+                   String colmatr = MainMenu.this.collab.getMatricule();
+                   int matr = Integer.parseInt(colmatr);
+                   Authentification auth = Authentification.getSession();
+                   Empreinte emp = match.empreinte;
+                   int adresse_d= Authentification.getSession().getAdresse_id();
+                   Adresse adr= DAOFactory.getAdresseDao().get(adresse_d);
+                   System.out.println(adr.getAdresse_mac());
+                   System.out.println(auth.getId());
+                   System.out.println(emp.getId());
+                   System.out.println(emp.getFinger());
+                   DAOFactory.getIdentificationDAO().create_identification(emp, auth, col,matr, adr.getAdresse_mac());
                } else{
+                   System.out.println("Ligne 963: Tonga eto");
                    MainMenu.this.gauge.setValueColor(ColorDef.GREEN);
                    MainMenu.this.gauge.setValueAnimated(match.score);
                    System.out.println(match.score);
                    MainMenu.this.collab= DAOFactory.getCollaborateurDAO().get(match.empreinte.getCollaborateur_id());
                    MainMenu.this.gauge.setTitle(MainMenu.this.collab.getName());
+                   MainMenu.this.labmatchname.setText(MainMenu.this.collab.getName());
+                   MainMenu.this.labmatchdatenaiss.setText(MainMenu.this.collab.getDateNaiss());
+                   MainMenu.this.labmatchtypat.setText(MainMenu.this.collab.getType());
+                   Rajout objR = new Rajout(match.empreinte.getId(), Authentification.getSession().getId(), match.score, "identification");
+                   DAOFactory.getRajoutDAO().create(objR);
+                   Collaborateur col = MainMenu.this.collab;
+                   String colmatr = MainMenu.this.collab.getMatricule();
+                   int matr = Integer.parseInt(colmatr);
+                   int empid= match.empreinte.getId();
+                   String doigt = match.empreinte.getFinger();
+                   System.out.println("Adresse: ");
+                   System.out.println(Adresse.getCurrentAdressseMac());
+                   DAOFactory.getAdresseDao().getbyAdresseMac(Adresse.getCurrentAdressseMac());
+      
                }
                
             }
@@ -997,13 +1111,16 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1011,14 +1128,16 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel labanotherfinger;
     private javax.swing.JLabel labenreg;
     private javax.swing.JLabel labfingerone;
     private javax.swing.JLabel labident;
+    private javax.swing.JLabel labmatchdatenaiss;
     private javax.swing.JLabel labmatchfp;
+    private javax.swing.JLabel labmatchname;
+    private javax.swing.JLabel labmatchtypat;
     private javax.swing.JLabel libanotherfinger;
     private javax.swing.JLabel libfingerone;
     private javax.swing.JFormattedTextField matriculeField;

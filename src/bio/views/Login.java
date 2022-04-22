@@ -6,6 +6,8 @@
 package bio.views;
 import bio.api.UserConnection;
 import bio.models.Authentification;
+import bio.jdbc.LocalDatabaseConnection;
+import bio.models.Adresse;
 import dao.factory.DAOFactory;
 import bio.views.MainMenu;
 import java.util.Date;
@@ -208,25 +210,36 @@ public class Login extends javax.swing.JFrame {
         //for security reasons getText method is deprecated so I use this instead
         String password = String.valueOf(passwordfield.getPassword()); 
         
-        new MainMenu().setVisible(true);
-        /* if(username.equals("") || password.equals("")){
+        // new MainMenu().setVisible(true);
+        if(username.equals("") || password.equals("")){
             JOptionPane.showMessageDialog(this, "Tous les champs doivent être remplis");
+        } else if(LocalDatabaseConnection.getConnection() == null){
+            JOptionPane.showMessageDialog(this, "Veuillez connecter à une base de données");
         }
         else{
-            resultauth = UserConnection.authUser(username, password);
-            String checkValidate = resultauth.getResult();
-            if(checkValidate.equals("false")){
-                JOptionPane.showMessageDialog(this, "Erreur d'authentification: Veuillez reessayer à nouveau");
+            System.out.println(Adresse.getCurrentAdressseMac());
+            boolean adresse = DAOFactory.getAdresseDao().getbyAdresseMac(Adresse.getCurrentAdressseMac());
+            
+            if (adresse == false) {
+                JOptionPane.showMessageDialog(this, "Adresse Mac non autorisée", "Message", 2);
+            } else {
+                resultauth = UserConnection.authUser(username, password);
+                String checkValidate = resultauth.getResult();
+                if(checkValidate.equals("false")){
+                    JOptionPane.showMessageDialog(this, "Erreur d'authentification: Veuillez reessayer à nouveau");
+                }
+                else{
+                    System.out.println(resultauth.getUser().getUsername());
+                    Date curdate = new Date();
+                    DateFormat shortdateformat = DateFormat.getDateTimeInstance(3,3);
+                    Authentification.getSession().setSession(DAOFactory.getAuthentificationDAO().create(new Authentification(
+                        shortdateformat.format(curdate), resultauth.getUser().getId())));
+                    this.setVisible(false);
+                    new MainMenu().setVisible(true);
+                }
             }
-            else{
-                Date curdate = new Date();
-                DateFormat shortdateformat = DateFormat.getDateTimeInstance(3,3);
-                Authentification.getSession().setSession(DAOFactory.getAuthentificationDAO().create(new Authentification(
-                    shortdateformat.format(curdate), resultauth.getUser().getId())));
-                this.setVisible(false);
-                new Registration().setVisible(true);
-            }
-        } */
+            
+        } 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void userfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userfieldActionPerformed

@@ -103,18 +103,24 @@ public class AdresseDAO extends IDAO<Adresse>{
     return 0;
   }
   
-  public Adresse getbyAdresseMac(String mac) {
+  
+  
+  public boolean getbyAdresseMac(String mac) {
+     boolean adresse = false;
     try {
       PreparedStatement statement = this.connect.prepareStatement("SELECT * FROM adresses WHERE adresse_mac=?");
       statement.setString(1, mac);
       ResultSet rs = statement.executeQuery();
-      if (rs.next())
-        return new Adresse(rs
-            .getInt("id"), rs
-            .getString("adresse_mac")); 
+      if (rs.next()){
+          adresse = true;
+            System.out.println("Id adresse: " + rs.getInt("id"));
+      }
+      else{
+          adresse= false;
+      }
     } catch (SQLException e) {
       System.out.println(e.getMessage());
     } 
-    return null;
+    return adresse;
   }
 }
