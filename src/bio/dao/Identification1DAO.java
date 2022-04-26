@@ -5,6 +5,7 @@
  */
 package bio.dao;
 import bio.models.Identification;
+import bio.models.AuthUser;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -65,7 +66,7 @@ public class Identification1DAO extends IDAO<Identification>{
     } 
   } */
   
-  public void create_identification(Empreinte objE, Authentification objA, Collaborateur objC,int matricule, String adrmac) {
+  public void create_identification(Empreinte objE, Authentification objA, Collaborateur objC,int matricule,String adrmac, AuthUser auth) {
     
     try {
       PreparedStatement statement = this.connect.prepareStatement("INSERT INTO identifications(adresse_mac,empreinte_id,score,doigt,collaborateur_id,auth_id,user,code_cms,matricule,pourcentage)VALUES(?,?,?,?,?,?,?,?,?,?)");
@@ -75,8 +76,8 @@ public class Identification1DAO extends IDAO<Identification>{
       statement.setString(4, objE.getFinger());
       statement.setInt(5, objE.getCollaborateur_id());
       statement.setInt(6, objA.getId());
-      statement.setString(7, "R03");
-      statement.setString(8, "CMSTANA");
+      statement.setString(7, auth.getUsername());
+      statement.setString(8, auth.getUsername());
       statement.setInt(9, matricule);
       statement.setString(10, "88");
       statement.executeUpdate();

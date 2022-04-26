@@ -10,6 +10,8 @@ import bio.dao.RajoutDAO;
 import bio.dao.AuthentificationDAO;
 import bio.dao.AdresseDAO;
 import bio.dao.Identification1DAO;
+import bio.dao.IdentDAO;
+
 /**
  *
  * @author Diamondra
@@ -39,5 +41,9 @@ public class DAOFactory {
   
    public static Identification1DAO getIdentificationDAO(){
       return new Identification1DAO();
+  }
+   
+   public static IdentDAO getIdentDAO(){
+      return new IdentDAO();
   }
 }

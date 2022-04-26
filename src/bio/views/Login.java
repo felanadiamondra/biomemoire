@@ -10,6 +10,7 @@ import bio.jdbc.LocalDatabaseConnection;
 import bio.models.Adresse;
 import dao.factory.DAOFactory;
 import bio.views.MainMenu;
+import bio.models.AuthUser;
 import java.util.Date;
 import java.text.Format;
 import java.text.DateFormat;
@@ -217,9 +218,10 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Veuillez connecter à une base de données");
         }
         else{
-            System.out.println(Adresse.getCurrentAdressseMac());
+            String adrmac = Adresse.getCurrentAdressseMac();
             boolean adresse = DAOFactory.getAdresseDao().getbyAdresseMac(Adresse.getCurrentAdressseMac());
-            
+            int adid= DAOFactory.getAdresseDao().getAdressebyAdresseMac(Adresse.getCurrentAdressseMac());
+            System.out.println(adid);
             if (adresse == false) {
                 JOptionPane.showMessageDialog(this, "Adresse Mac non autorisée", "Message", 2);
             } else {
@@ -229,11 +231,14 @@ public class Login extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Erreur d'authentification: Veuillez reessayer à nouveau");
                 }
                 else{
-                    System.out.println(resultauth.getUser().getUsername());
+                    System.out.println(resultauth.getUser().getCodeCms());
                     Date curdate = new Date();
                     DateFormat shortdateformat = DateFormat.getDateTimeInstance(3,3);
+                   // AuthUser.getAuthUser().setAuthUser(new AuthUser());
                     Authentification.getSession().setSession(DAOFactory.getAuthentificationDAO().create(new Authentification(
                         shortdateformat.format(curdate), resultauth.getUser().getId())));
+                    AuthUser.getAuthUser().setAuthUser(new AuthUser(adrmac, resultauth.getUser().getUsername(), resultauth.getUser().getCodeCms()));
+                    System.out.println("Username: " + resultauth.getUser().getRole());
                     this.setVisible(false);
                     new MainMenu().setVisible(true);
                 }

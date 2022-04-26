@@ -11,6 +11,8 @@ import bio.models.Empreinte;
 import bio.models.Rajout;
 import bio.models.Adresse;
 import bio.models.Identification;
+import bio.models.AuthUser;
+import bio.models.Ident;
 import dao.factory.DAOFactory;
 import eu.hansolo.steelseries.gauges.Linear;
 import eu.hansolo.steelseries.tools.ColorDef;
@@ -1011,10 +1013,13 @@ public class MainMenu extends javax.swing.JFrame {
                    System.out.println(auth.getId());
                    System.out.println(emp.getId());
                    System.out.println(emp.getFinger());
-                   DAOFactory.getIdentificationDAO().create_identification(emp, auth, col,matr, adr.getAdresse_mac());
+                   System.out.println(AuthUser.getAuthUser().getUsername());
+                   AuthUser authuser =  AuthUser.getAuthUser();
+                   System.out.println(authuser.getAdresseId());
+                   DAOFactory.getIdentDAO().create(new Ident(authuser.getAdresseId(),auth.getId(), emp.getId(), authuser.getUsername(), match.score));
                } else{
-                   System.out.println("Ligne 963: Tonga eto");
                    MainMenu.this.gauge.setValueColor(ColorDef.GREEN);
+                   System.out.println("Ligne 963: Tonga eto");
                    MainMenu.this.gauge.setValueAnimated(match.score);
                    System.out.println(match.score);
                    MainMenu.this.collab= DAOFactory.getCollaborateurDAO().get(match.empreinte.getCollaborateur_id());
@@ -1029,10 +1034,18 @@ public class MainMenu extends javax.swing.JFrame {
                    int matr = Integer.parseInt(colmatr);
                    int empid= match.empreinte.getId();
                    String doigt = match.empreinte.getFinger();
-                   System.out.println("Adresse: ");
-                   System.out.println(Adresse.getCurrentAdressseMac());
-                   DAOFactory.getAdresseDao().getbyAdresseMac(Adresse.getCurrentAdressseMac());
-      
+                   //DAOFactory.getAdresseDao().getbyAdresseMac(Adresse.getCurrentAdressseMac());
+                   AuthUser authuser =  AuthUser.getAuthUser();
+                   Authentification auth = Authentification.getSession();
+                   Empreinte emp = match.empreinte;
+                   int adresse_d= Authentification.getSession().getAdresse_id();
+                   Adresse adr= DAOFactory.getAdresseDao().get(adresse_d);
+                   /*System.out.println(emp.getId());
+                   System.out.println(emp.getFinger());
+                   System.out.println(emp.getCollaborateur_id());       
+                   System.out.println(authuser.getAdresseId());*/
+                   DAOFactory.getIdentDAO().create(new Ident(authuser.getAdresseId(),auth.getId(), emp.getId(), authuser.getUsername(), match.score));
+                   //DAOFactory.getIdentificationDAO().create_identification(emp, auth, col,matr, adr.getAdresse_mac(), authuser);
                }
                
             }
