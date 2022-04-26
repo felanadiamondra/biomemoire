@@ -19,9 +19,9 @@ public class User {
     
     public User(){}
     
-    public User(String username,String mdp,String role){
+    public User(String username,String code,String role){
         this.username = username;
-        this.motdepasse = mdp;
+        this.codecms = code;
         this.role = role; 
     }
     
@@ -54,14 +54,6 @@ public class User {
         this.username = username;
     }
        
-    public String getPassword(){
-        return this.password;
-    }
-    
-    public void setPassword(String pass){
-        this.password = pass;
-    }
-    
     public String getCodeCms(){
         return this.codecms;
     }
@@ -69,7 +61,7 @@ public class User {
     public void setCodeCms(String code){
         this.codecms = code;
     }
- 
+    
     public String getRole(){
         return this.role;
     }

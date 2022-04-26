@@ -23,12 +23,16 @@ import bio.models.Authentification;
 public class IdentDAO extends IDAO<Ident>{
     public Ident create(Ident obj) {
     try {
-      PreparedStatement statement = this.connect.prepareStatement("INSERT INTO ident(adresse_mac,user, auth_id, empreinte_id, score) VALUES (?,?,?,?,?)");
+      PreparedStatement statement = this.connect.prepareStatement("INSERT INTO ident(adresse_mac,user, auth_id, empreinte_id, score, doigt, collaborateur_id, code_cms, matricule) VALUES (?,?,?,?,?,?,?,?,?)");
       statement.setString(1, obj.getAdresseMac());
       statement.setString(2, obj.getUtilisateur());
       statement.setInt(3, obj.getId_auth());
       statement.setInt(4, obj.getEmpreintes());
       statement.setInt(5, obj.getScore());
+      statement.setString(6, obj.getDoigt());
+      statement.setInt(7, obj.getCollabId());
+      statement.setString(8, obj.getCodecms());
+      statement.setInt(9, obj.getMatricule());
       statement.executeUpdate();
     } catch (SQLException e) {
       System.out.println(e.getMessage());

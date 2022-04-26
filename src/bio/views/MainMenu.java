@@ -1002,21 +1002,17 @@ public class MainMenu extends javax.swing.JFrame {
                    List<Identification> farany = DAOFactory.getIdentificationDAO().getAllTableIdentification(indexmax);
    
                    DAOFactory.getIdentificationDAO().create_identification(farany.get(0), String.valueOf(match.score));*/
+            
+                   DAOFactory.getRajoutDAO().create(objR);
                    Collaborateur col = MainMenu.this.collab;
                    String colmatr = MainMenu.this.collab.getMatricule();
                    int matr = Integer.parseInt(colmatr);
+                   AuthUser authuser =  AuthUser.getAuthUser();
                    Authentification auth = Authentification.getSession();
                    Empreinte emp = match.empreinte;
                    int adresse_d= Authentification.getSession().getAdresse_id();
-                   Adresse adr= DAOFactory.getAdresseDao().get(adresse_d);
-                   System.out.println(adr.getAdresse_mac());
-                   System.out.println(auth.getId());
-                   System.out.println(emp.getId());
-                   System.out.println(emp.getFinger());
-                   System.out.println(AuthUser.getAuthUser().getUsername());
-                   AuthUser authuser =  AuthUser.getAuthUser();
-                   System.out.println(authuser.getAdresseId());
-                   DAOFactory.getIdentDAO().create(new Ident(authuser.getAdresseId(),auth.getId(), emp.getId(), authuser.getUsername(), match.score));
+                   Adresse adr= DAOFactory.getAdresseDao().get(adresse_d); 
+                   DAOFactory.getIdentDAO().create(new Ident(authuser.getAdresseId(),auth.getId(), emp.getId(), authuser.getUsername(), match.score, emp.getFinger(), emp.getCollaborateur_id(), authuser.getUsername(),matr));
                } else{
                    MainMenu.this.gauge.setValueColor(ColorDef.GREEN);
                    System.out.println("Ligne 963: Tonga eto");
@@ -1032,20 +1028,12 @@ public class MainMenu extends javax.swing.JFrame {
                    Collaborateur col = MainMenu.this.collab;
                    String colmatr = MainMenu.this.collab.getMatricule();
                    int matr = Integer.parseInt(colmatr);
-                   int empid= match.empreinte.getId();
-                   String doigt = match.empreinte.getFinger();
-                   //DAOFactory.getAdresseDao().getbyAdresseMac(Adresse.getCurrentAdressseMac());
                    AuthUser authuser =  AuthUser.getAuthUser();
                    Authentification auth = Authentification.getSession();
                    Empreinte emp = match.empreinte;
                    int adresse_d= Authentification.getSession().getAdresse_id();
-                   Adresse adr= DAOFactory.getAdresseDao().get(adresse_d);
-                   /*System.out.println(emp.getId());
-                   System.out.println(emp.getFinger());
-                   System.out.println(emp.getCollaborateur_id());       
-                   System.out.println(authuser.getAdresseId());*/
-                   DAOFactory.getIdentDAO().create(new Ident(authuser.getAdresseId(),auth.getId(), emp.getId(), authuser.getUsername(), match.score));
-                   //DAOFactory.getIdentificationDAO().create_identification(emp, auth, col,matr, adr.getAdresse_mac(), authuser);
+                   Adresse adr= DAOFactory.getAdresseDao().get(adresse_d); 
+                   DAOFactory.getIdentDAO().create(new Ident(authuser.getAdresseId(),auth.getId(), emp.getId(), authuser.getUsername(), match.score, emp.getFinger(), emp.getCollaborateur_id(), authuser.getCodecms(),matr));
                }
                
             }

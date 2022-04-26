@@ -3,15 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/HP/Documents/NetBeansProjects/BIOEDJIR/src/bio/models/User.java</file>
             <file>file:/C:/Users/HP/Documents/NetBeansProjects/BIOEDJIR/src/bio/dao/AdresseDAO.java</file>
+            <file>file:/C:/Users/HP/Documents/NetBeansProjects/BIOEDJIR/src/bio/dao/IDAO.java</file>
             <file>file:/C:/Users/HP/Documents/NetBeansProjects/BIOEDJIR/src/bio/views/MainMenu.java</file>
             <file>file:/C:/Users/HP/Documents/NetBeansProjects/BIOEDJIR/src/bio/views/Login.java</file>
+            <file>file:/C:/Users/HP/Documents/NetBeansProjects/BIOEDJIR/src/bio/models/Ident.java</file>
             <file>file:/C:/Users/HP/Documents/NetBeansProjects/BIOEDJIR/src/bio/dao/Identification1DAO.java</file>
             <file>file:/C:/Users/HP/Documents/NetBeansProjects/BIOEDJIR/src/bio/models/AuthUser.java</file>
-            <file>file:/C:/Users/HP/Documents/NetBeansProjects/BIOEDJIR/src/bio/api/UserConnection.java</file>
+            <file>file:/C:/Users/HP/Documents/NetBeansProjects/BIOEDJIR/src/bio/dao/IdentDAO.java</file>
             <file>file:/C:/Users/HP/Documents/NetBeansProjects/BIOEDJIR/src/dao/factory/DAOFactory.java</file>
-            <file>file:/C:/Users/HP/Documents/NetBeansProjects/BIOEDJIR/src/bio/models/Authentification.java</file>
+            <file>file:/C:/Users/HP/Documents/NetBeansProjects/BIOEDJIR/src/bio/models/Identification.java</file>
         </group>
     </open-files>
 </project-private>
