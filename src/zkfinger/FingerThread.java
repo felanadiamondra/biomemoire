@@ -64,7 +64,6 @@ public class FingerThread extends Thread{
             this.isCapture = ZKScanner.getInstance().capture(finger, matr);
             if(this.isCapture){
                this.setImageIcon();
-               System.out.println("exemple de test");
             }
             Thread.sleep(500);
          } catch (InterruptedException ie) {

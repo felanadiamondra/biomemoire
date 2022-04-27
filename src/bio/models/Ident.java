@@ -21,8 +21,9 @@ public class Ident {
   private int collabid;
   private String codecms;
   private int matricule;
+  private String date;
   
-  public Ident(String adressemac, int auth, int empreinte, String user, int score, String doigt, int collab, String code, int matr) {
+  public Ident(String adressemac, int auth, int empreinte, String user, int score, String doigt, int collab, String code, int matr, String date) {
     this.adresse_mac = adressemac;
     this.id_auth = auth;
     this.id_empreintes = empreinte;
@@ -32,6 +33,7 @@ public class Ident {
     this.collabid = collab;
     this.codecms = code;
     this.matricule = matr;
+    this.date = date;
   }
   
   
@@ -90,6 +92,10 @@ public class Ident {
   }
   public int getMatricule(){
       return this.matricule;
+  }
+  
+  public String getDateCreated(){
+      return this.date;
   }
   
 }

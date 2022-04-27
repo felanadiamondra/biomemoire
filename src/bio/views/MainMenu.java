@@ -20,6 +20,10 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
+import java.util.Date;
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.text.DateFormat;
 import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
@@ -201,7 +205,7 @@ public class MainMenu extends javax.swing.JFrame {
         );
         navLayout.setVerticalGroup(
             navLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
@@ -530,12 +534,6 @@ public class MainMenu extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jLabel4.setText("DATE DE NAISSANCE : ");
 
-        datenaiss.setText("jLabel5");
-
-        name.setText("jLabel5");
-
-        typepat.setText("jLabel5");
-
         javax.swing.GroupLayout panInfoCollabsLayout = new javax.swing.GroupLayout(panInfoCollabs);
         panInfoCollabs.setLayout(panInfoCollabsLayout);
         panInfoCollabsLayout.setHorizontalGroup(
@@ -848,6 +846,7 @@ public class MainMenu extends javax.swing.JFrame {
                    DAOFactory.getRajoutDAO().create(objR);
                    DAOFactory.getRajoutDAO().create(objR2);
                    JOptionPane.showMessageDialog(this,"Empreintes ajoutés avec succès");
+                   this.initializeAll();
                } else{
                    
                    DAOFactory.getEmpreinteDAO().deleteById(collab.getId());
@@ -1012,7 +1011,10 @@ public class MainMenu extends javax.swing.JFrame {
                    Empreinte emp = match.empreinte;
                    int adresse_d= Authentification.getSession().getAdresse_id();
                    Adresse adr= DAOFactory.getAdresseDao().get(adresse_d); 
-                   DAOFactory.getIdentDAO().create(new Ident(authuser.getAdresseId(),auth.getId(), emp.getId(), authuser.getUsername(), match.score, emp.getFinger(), emp.getCollaborateur_id(), authuser.getUsername(),matr));
+                   Date date = new Date();
+                   SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss") ;
+                   String currentDateTime = format.format(date);
+                   DAOFactory.getIdentDAO().create(new Ident(authuser.getAdresseId(),auth.getId(), emp.getId(), authuser.getUsername(), match.score, emp.getFinger(), emp.getCollaborateur_id(), authuser.getCodecms(),matr, currentDateTime));
                } else{
                    MainMenu.this.gauge.setValueColor(ColorDef.GREEN);
                    System.out.println("Ligne 963: Tonga eto");
@@ -1033,7 +1035,10 @@ public class MainMenu extends javax.swing.JFrame {
                    Empreinte emp = match.empreinte;
                    int adresse_d= Authentification.getSession().getAdresse_id();
                    Adresse adr= DAOFactory.getAdresseDao().get(adresse_d); 
-                   DAOFactory.getIdentDAO().create(new Ident(authuser.getAdresseId(),auth.getId(), emp.getId(), authuser.getUsername(), match.score, emp.getFinger(), emp.getCollaborateur_id(), authuser.getCodecms(),matr));
+                   Date date = new Date();
+                   SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss") ;
+                   String currentDateTime = format.format(date);
+                   DAOFactory.getIdentDAO().create(new Ident(authuser.getAdresseId(),auth.getId(), emp.getId(), authuser.getUsername(), match.score, emp.getFinger(), emp.getCollaborateur_id(), authuser.getCodecms(),matr, currentDateTime));
                }
                
             }
